@@ -1,0 +1,55 @@
+enpoint list:
+GET:  /getAccessToken
+GET:  /<string:panNumber>
+GET:  /id/<string:id>
+
+
+
+Endpoint Descriptions:
+
+/getAccessToken
+format expected : json
+method : GET
+return type : json
+success message : {"bearer_token": <bearer token to be used>}
+error message : {"msg": "Secret key incorrect"}
+Need : To get the bearer authentication token
+
+    Params: "secret"
+    type : string
+    Required : True
+
+    Params: "id"
+    type : string
+    Required : True
+
+
+/<string:panNumber>
+format expected : none
+method : GET
+return type : json
+success message : {"pan": <Pan Number>,"name": <Name of the Pan Number Holder>,"dob": <Date of Birth the of Pan Number Holder>,"father_name": <Father's Name the of Pan Number Holder>,"client_id": <Database Object ID of the Entry>}
+error message : 
+{"msg": "Token has expired"}
+{"msg": "Pan not found"}
+{"msg": "Backend Error"}
+Need : To get the pan number details using pan number and bearer token
+
+    Params: "Token"
+    type : Access Bearer Header
+    Required : True
+
+
+/id/<string:id>
+format expected : none
+method : GET
+return type : json
+success message : {"pan": <Pan Number>,"name": <Name of the Pan Number Holder>,"dob": <Date of Birth the of Pan Number Holder>,"father_name": <Father's Name the of Pan Number Holder>,"client_id": <Database Object ID of the Entry>}
+error message : 
+{"msg": "Token has expired"}
+{"msg": "Object ID not found in the Database"}
+Need : To get the pan number details using object id and bearer token
+
+    Params: "Token"
+    type : Access Bearer Header
+    Required : True
